@@ -251,20 +251,25 @@ def create_lead(lead: Lead):
 
     with sqlite3.connect(database_path) as connection:
         connection.execute("BEGIN IMMEDIATE")
-        duplicate = connection.execute(
+        recent_leads = connection.execute(
             """
-            SELECT id
+            SELECT message
             FROM leads
             WHERE name = ?
               AND phone = ?
               AND email = ?
-              AND message = ?
               AND created_at >= datetime('now', '-5 minutes')
             ORDER BY id DESC
-            LIMIT 1
             """,
-            (lead.name, lead.phone, lead.email, lead.message),
-        ).fetchone()
+            (lead.name, lead.phone, lead.email),
+        ).fetchall()
+
+        # casefold нужен только для сравнения: текст заявки не меняем.
+        message_for_comparison = lead.message.casefold()
+        duplicate = any(
+            row[0].strip().casefold() == message_for_comparison
+            for row in recent_leads
+        )
 
         if duplicate:
             return {

@@ -77,6 +77,27 @@ class LeadApiTests(unittest.TestCase):
 
     @patch.object(main, "send_to_google_sheets", return_value=True)
     @patch.object(main, "send_to_telegram", return_value=True)
+    def test_message_case_duplicate_preserves_original(
+        self, telegram_mock, google_mock
+    ):
+        first = self.client.post("/api/leads", json=self.make_lead(message="Привет"))
+        second = self.client.post("/api/leads", json=self.make_lead(message="привет"))
+
+        self.assertEqual(first.status_code, 200)
+        self.assertFalse(first.json()["duplicate"])
+        self.assertEqual(second.status_code, 200)
+        self.assertTrue(second.json()["success"])
+        self.assertTrue(second.json()["duplicate"])
+        saved = self.get_saved_leads()
+        self.assertEqual(len(saved), 1)
+        self.assertEqual(saved[0]["message"], "Привет")
+        telegram_mock.assert_called_once()
+        google_mock.assert_called_once()
+        self.assertEqual(telegram_mock.call_args.args[1].message, "Привет")
+        self.assertEqual(google_mock.call_args.args[0]["message"], "Привет")
+
+    @patch.object(main, "send_to_google_sheets", return_value=True)
+    @patch.object(main, "send_to_telegram", return_value=True)
     def test_normalized_values_are_treated_as_duplicate(
         self, telegram_mock, google_mock
     ):
