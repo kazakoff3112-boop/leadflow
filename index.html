@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+      name="description"
+      content="LeadFlow — автоматизация бизнес-процессов для растущих компаний."
+    >
+    <title>LeadFlow — автоматизация бизнеса</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="logo" href="#top" aria-label="LeadFlow — на главную">
+        <span class="logo-mark" aria-hidden="true">L</span>
+        LeadFlow
+      </a>
+      <a class="header-button" href="#request">Оставить заявку</a>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-content">
+          <p class="eyebrow">Автоматизация без лишней сложности</p>
+          <h1 id="hero-title">Бизнес-процессы, которые работают на вас</h1>
+          <p class="hero-text">
+            Помогаем компаниям экономить время, быстрее обрабатывать заявки
+            и сосредоточиться на росте бизнеса.
+          </p>
+          <a class="primary-button" href="#request">Оставить заявку</a>
+        </div>
+
+        <div class="hero-panel" aria-label="Преимущества автоматизации">
+          <p class="panel-label">Рабочий процесс</p>
+          <div class="flow-step">
+            <span>01</span>
+            <div>
+              <strong>Получаем заявку</strong>
+              <small>Все обращения в одном месте</small>
+            </div>
+          </div>
+          <div class="flow-line" aria-hidden="true"></div>
+          <div class="flow-step">
+            <span>02</span>
+            <div>
+              <strong>Запускаем процесс</strong>
+              <small>Рутинные действия выполняются автоматически</small>
+            </div>
+          </div>
+          <div class="flow-line" aria-hidden="true"></div>
+          <div class="flow-step">
+            <span>03</span>
+            <div>
+              <strong>Получаем результат</strong>
+              <small>Команда работает быстрее и точнее</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="services" aria-labelledby="services-title">
+        <div class="section-heading">
+          <p class="eyebrow">Услуги</p>
+          <h2 id="services-title">Что мы автоматизируем</h2>
+        </div>
+        <div class="service-grid">
+          <article class="service-card">
+            <span class="card-number">01</span>
+            <h3>Обработка заявок</h3>
+            <p>Собираем обращения клиентов и передаём их нужному сотруднику.</p>
+          </article>
+          <article class="service-card">
+            <span class="card-number">02</span>
+            <h3>Рабочие процессы</h3>
+            <p>Убираем повторяющиеся задачи и сокращаем ручную работу команды.</p>
+          </article>
+          <article class="service-card">
+            <span class="card-number">03</span>
+            <h3>Связь сервисов</h3>
+            <p>Объединяем рабочие инструменты в одну понятную систему.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="request-section" id="request" aria-labelledby="request-title">
+        <div class="request-copy">
+          <p class="eyebrow">Начнём с вашей задачи</p>
+          <h2 id="request-title">Оставьте заявку</h2>
+          <p>Расскажите, какой процесс вы хотите сделать быстрее и удобнее.</p>
+        </div>
+
+        <form class="request-form" id="request-form">
+          <label for="name">Имя</label>
+          <input id="name" name="name" type="text" autocomplete="name" required>
+
+          <label for="phone">Телефон</label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" required>
+
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required>
+
+          <label for="message">Сообщение</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+
+          <button type="submit">Отправить заявку</button>
+          <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <a class="logo footer-logo" href="#top">
+        <span class="logo-mark" aria-hidden="true">L</span>
+        LeadFlow
+      </a>
+      <p>Автоматизация бизнес-процессов</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
